@@ -2,9 +2,9 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 
-const Group = ({ user, typeService, time, active }) => {
+const Appointment = ({ user, typeService, time, active, navigation }) => {
   return (
-    <GroupItem>
+    <GroupItem onPress={() => navigation.navigate("ClientInfo")}>
       <Avatar
         source={{
           uri: user.avatar,
@@ -19,10 +19,10 @@ const Group = ({ user, typeService, time, active }) => {
   );
 };
 
-Group.defaultProps = {
+Appointment.defaultProps = {
   title: "Untitled",
   items: [],
-}; 
+};
 
 const SessionData = styled.Text`
   background: ${(props) => (props.active ? "#2A86FF" : "#e9f5ff")};
@@ -62,5 +62,4 @@ const GroupItem = styled.TouchableOpacity`
   border-bottom-color: #f3f3f3;
 `;
 
-
-export default Group;
+export default Appointment;
