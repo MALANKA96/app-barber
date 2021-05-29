@@ -1,27 +1,30 @@
 import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { Ionicons, Entypo } from "@expo/vector-icons";
+import {
+  Ionicons,
+  Entypo,
+  MaterialIcons,
+  AntDesign,
+  FontAwesome,
+} from "@expo/vector-icons";
 
-const ClientInfoScreen = ({ user, typeService, time }) => {
+const ClientInfoScreen = ({ route }) => {
   return (
     <ClientInfoItem>
-      <AvatarView>
+      <ClientInfoView>
         <Avatar
           source={{
-            uri: "https://sun9-41.userapi.com/impg/c850608/v850608714/a65ec/TJPHTEoHm3Y.jpg?size=600x598&quality=96&sign=d2101c02182b4eb1c2fb9bf69ef880ac&type=album",
+            uri: route.params.user.avatar,
           }}
         ></Avatar>
-      </AvatarView>
-      <NameClient>Alexandra Volkova</NameClient>
-      <Telefon>8 (029) 755-98-84</Telefon>
-      <View
-        style={{
-         /*  alignItems: "center",
-          alignContent: "center", */
-          flexDirection: "row",
-        }}
-      >
+        <NamePhoneView>
+          <NameClient>{route.params.user.fullName}</NameClient>
+          <PhoneClient>{route.params.user.phone}</PhoneClient>
+        </NamePhoneView>
+      </ClientInfoView>
+
+      <ButtonsView>
         <MessageButton
           style={{
             shadowColor: "#2a86ff",
@@ -50,39 +53,135 @@ const ClientInfoScreen = ({ user, typeService, time }) => {
         >
           <Ionicons name="call" size={32} color="white" />
         </CallButton>
-      </View>
+      </ButtonsView>
 
-      <DataService>Ближайшая запись: {"\n"} 25 декабря 17:00</DataService>
-      <TypeService>Стрижка бороды. Покраска волос </TypeService>
-      <HistoriItem>История сеансов:</HistoriItem>
+      <NoteView>
+        <NoteText>Записи</NoteText>
+        <NoteCardView
+          style={{
+            shadowColor: "#767676",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.5,
+            shadowRadius: 2.5,
+            elevation: 5,
+          }}
+        >
+          <DataService>
+            <AntDesign name="calendar" size={32} color="black" />
+            {route.params.data}
+          </DataService>
+          <TimeService>
+            <Ionicons name="md-time-outline" size={34} color="black" />
+            {route.params.time}
+          </TimeService>
+          <TypeService>
+            <MaterialIcons name="turned-in-not" size={34} color="black" />
+            {route.params.typeService}{" "}
+          </TypeService>
+          <CostService>
+            <FontAwesome name="money" size={30} color="black" /> 40 BYN
+          </CostService>
+        </NoteCardView>
+      </NoteView>
+
+      <HistoriButton
+        style={{
+          shadowColor: "#2a86ff",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 2.5,
+          elevation: 5,
+        }}
+      >
+        <MaterialIcons name="history" size={34} color="white" />
+      </HistoriButton>
+      <PlusButton
+        style={{
+          shadowColor: "#2a86ff",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 2.5,
+          elevation: 5,
+        }}
+      >
+        <MaterialIcons name="edit" size={32} color="white" />
+      </PlusButton>
     </ClientInfoItem>
   );
 };
 
-const HistoriItem = styled.Text`
-  font-size: 24px;
-  font-weight: 600;
-  color: #000000;
-  margin: 0 15px 15px;
+const PlusButton = styled.TouchableOpacity`
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 64px;
+  height: 64px;
+  background-color: #2a86ff;
+  right: 25px;
+  bottom: 25px;
 `;
-const DataService = styled.Text`
-  font-size: 20px;
-  font-weight: 600;
-  color: #8b979f;
-  margin: 0 15px 5px;
+const HistoriButton = styled.TouchableOpacity`
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 64px;
+  height: 64px;
+  background-color: #2a86ff;
+  left: 25px;
+  bottom: 25px;
+`;
+
+const CostService = styled.Text`
+  width: 100%;
+  font-size: 22px;
+  font-weight: 400;
+  color: #000000;
+  padding: 0px 15px 5px 15px;
 `;
 const TypeService = styled.Text`
-  font-size: 20px;
-  font-weight: 600;
-  color: #8b979f;
-  margin: 0 15px 25px;
+  width: 100%;
+  font-size: 22px;
+  font-weight: 400;
+  color: #000000;
+  padding: 0px 15px 5px 15px;
+`;
+const TimeService = styled.Text`
+  width: 100%;
+  font-size: 22px;
+  font-weight: 400;
+  color: #000000;
+  padding: 0px 15px 5px 15px;
+`;
+const DataService = styled.Text`
+  width: 100%;
+  font-size: 22px;
+  font-weight: 400;
+  color: #000000;
+  padding: 0px 15px 5px 15px;
+`;
+const NoteText = styled.Text`
+  font-size: 24px;
+  font-weight: 800;
+  color: #000000;
+  padding: 10px;
 `;
 
 const CallButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   border-radius: 50px;
-  width: 150px;
+  width: 125px;
   height: 48px;
   background-color: #43a047;
   margin: 0 15px 15px;
@@ -91,41 +190,65 @@ const MessageButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   border-radius: 50px;
-  width: 150px;
+  width: 125px;
   height: 48px;
   background-color: #2a86ff;
   margin: 0 15px 15px;
 `;
 
-const Telefon = styled.Text`
-  font-size: 26px;
+const PhoneClient = styled.Text`
+  text-align: left;
+  width: 100%;
+  font-size: 24px;
   font-weight: 400;
-  color: #000000;
+  color: #767676;
   margin: 0 15px 15px;
 `;
+
 const NameClient = styled.Text`
-  max-width: 320px;
   text-align: left;
-  font-size: 32px;
+  width: 100%;
+  font-size: 24px;
   font-weight: 600;
-  margin-bottom: 5px;
-  color: #000000
+  color: #000000;
 `;
 
 const Avatar = styled.Image`
-  margin-top: 15px;
   border-radius: 150px;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 `;
 
-const AvatarView = styled.View`
+const NoteCardView = styled.View`
+  width: 300px;
+  border-radius: 10px;
+  background: #ffffff;
+`;
+
+const NoteView = styled.View`
+  background: #f8fafd;
+`;
+
+const ButtonsView = styled.View`
+  justify-content: space-around;
+  flex-flow: row;
+`;
+
+const NamePhoneView = styled.View`
+  padding-left: 15px;
   align-items: center;
+  justify-content: center;
+`;
+
+const ClientInfoView = styled.View`
+  padding: 15px;
+  /* justify-content: space-between; */
+  flex-flow: row;
 `;
 const ClientInfoItem = styled.View`
+  flex: 1;
   align-items: center;
-  /* text-align: center; */
-  background-color: #e5e5e5;
+  background-color: #f8fafd;
 `;
 
 export default ClientInfoScreen;

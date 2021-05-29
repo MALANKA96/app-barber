@@ -2,9 +2,10 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 
-const Appointment = ({ user, typeService, time, active, navigation }) => {
+const Appointment = ({ navigate, item }) => {
+  const { user, typeService, time, active} = item;
   return (
-    <GroupItem onPress={() => navigation.navigate("ClientInfo")}>
+    <GroupItem onPress={navigate.bind(this, "ClientInfo", item)}>
       <Avatar
         source={{
           uri: user.avatar,
