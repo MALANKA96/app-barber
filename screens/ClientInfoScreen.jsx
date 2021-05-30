@@ -69,21 +69,47 @@ const ClientInfoScreen = ({ route }) => {
             elevation: 5,
           }}
         >
-          <DataService>
-            <AntDesign name="calendar" size={32} color="black" />
-            {route.params.data}
-          </DataService>
-          <TimeService>
-            <Ionicons name="md-time-outline" size={34} color="black" />
-            {route.params.time}
-          </TimeService>
-          <TypeService>
-            <MaterialIcons name="turned-in-not" size={34} color="black" />
-            {route.params.typeService}{" "}
-          </TypeService>
-          <CostService>
-            <FontAwesome name="money" size={30} color="black" /> 40 BYN
-          </CostService>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingLeft: 10,
+              paddingTop: 5,
+            }}
+          >
+            <AntDesign name="calendar" size={28} color="#484848" />
+            <DataService>{route.params.data}</DataService>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingLeft: 10,
+              paddingTop: 5,
+            }}
+          >
+            <AntDesign name="clockcircleo" size={28} color="#484848" />
+            <TimeService>{route.params.time}</TimeService>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingLeft: 10,
+              paddingTop: 5,
+            }}
+          >
+            <AntDesign name="downcircleo" size={28} color="#484848" />
+            <TypeService>{route.params.typeService}</TypeService>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingLeft: 10,
+              paddingTop: 5,
+              paddingBottom: 5,
+            }}
+          >
+            <AntDesign name="creditcard" size={28} color="#484848" />
+            <CostService>40 BYN</CostService>
+          </View>
         </NoteCardView>
       </NoteView>
 
@@ -144,31 +170,34 @@ const HistoriButton = styled.TouchableOpacity`
 
 const CostService = styled.Text`
   width: 100%;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 400;
   color: #000000;
-  padding: 0px 15px 5px 15px;
+  padding-left: 15px;
 `;
 const TypeService = styled.Text`
   width: 100%;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 400;
   color: #000000;
-  padding: 0px 15px 5px 15px;
+  padding-left: 15px;
 `;
 const TimeService = styled.Text`
   width: 100%;
-  font-size: 22px;
+  align-items: center;
+  font-size: 24px;
   font-weight: 400;
   color: #000000;
-  padding: 0px 15px 5px 15px;
+  padding-left: 15px;
 `;
+
 const DataService = styled.Text`
   width: 100%;
-  font-size: 22px;
+  align-items: center;
+  font-size: 24px;
   font-weight: 400;
   color: #000000;
-  padding: 0px 15px 5px 15px;
+  padding-left: 15px;
 `;
 const NoteText = styled.Text`
   font-size: 24px;
@@ -182,7 +211,7 @@ const CallButton = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 50px;
   width: 125px;
-  height: 48px;
+  height: 44px;
   background-color: #43a047;
   margin: 0 15px 15px;
 `;
@@ -191,7 +220,7 @@ const MessageButton = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 50px;
   width: 125px;
-  height: 48px;
+  height: 44px;
   background-color: #2a86ff;
   margin: 0 15px 15px;
 `;
@@ -199,7 +228,7 @@ const MessageButton = styled.TouchableOpacity`
 const PhoneClient = styled.Text`
   text-align: left;
   width: 100%;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   color: #767676;
   margin: 0 15px 15px;
