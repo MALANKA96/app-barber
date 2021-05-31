@@ -3,16 +3,16 @@ import { View } from "react-native";
 import styled from "styled-components/native";
 
 const Appointment = ({ navigate, item }) => {
-  const { user, typeService, time, active} = item;
+  const { client, typeService, time, active} = item;
   return (
     <GroupItem onPress={navigate.bind(this, "ClientInfo", item)}>
       <Avatar
         source={{
-          uri: user.avatar,
+          uri: client.avatar,
         }}
       ></Avatar>
       <View style={{ flex: 1 }}>
-        <NameClient>{user.fullName}</NameClient>
+        <NameClient>{client.fullName}</NameClient>
         <TypeService>{typeService}</TypeService>
       </View>
       <SessionData active={active}>{time}</SessionData>

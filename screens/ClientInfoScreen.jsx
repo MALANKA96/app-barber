@@ -1,13 +1,7 @@
 import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import {
-  Ionicons,
-  Entypo,
-  MaterialIcons,
-  AntDesign,
-  FontAwesome,
-} from "@expo/vector-icons";
+import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
 const ClientInfoScreen = ({ route }) => {
   return (
@@ -15,12 +9,12 @@ const ClientInfoScreen = ({ route }) => {
       <ClientInfoView>
         <Avatar
           source={{
-            uri: route.params.user.avatar,
+            uri: route.params.client.avatar,
           }}
         ></Avatar>
         <NamePhoneView>
-          <NameClient>{route.params.user.fullName}</NameClient>
-          <PhoneClient>{route.params.user.phone}</PhoneClient>
+          <NameClient>{route.params.client.fullName}</NameClient>
+          <PhoneClient>{route.params.client.phone}</PhoneClient>
         </NamePhoneView>
       </ClientInfoView>
 
