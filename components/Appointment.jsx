@@ -27,7 +27,7 @@ Appointment.defaultProps = {
 
 const SessionData = styled.Text`
   background: ${(props) => (props.active ? "#2A86FF" : "#e9f5ff")};
-  color: ${(props) => (props.active ? "#FFFFFF" : "#4294ff")};
+  color: ${(props) => (props.active ? "#FFFFFF" : "#0C0C0C")};
   border-radius: 18px;
   font-weight: 600;
   font-size: 16px;
@@ -46,6 +46,7 @@ const TypeService = styled.Text`
 const NameClient = styled.Text`
   font-size: 18px;
   font-weight: 600;
+  color: #f3f3f3;
 `;
 
 const Avatar = styled.Image`
@@ -58,9 +59,13 @@ const Avatar = styled.Image`
 const GroupItem = styled.TouchableOpacity`
   align-items: center;
   flex-direction: row;
+  margin: 5px;
   padding: 20px;
-  border-bottom-width: 1px;
-  border-bottom-color: #f3f3f3;
+  background-color: #333635 ;
+  border-radius: 15px;
+  /* border-bottom-width: 5px; */
+  /* border-bottom-color: #f3f3f3; */
+  border-bottom-color: #0C0C0C; 
 `;
 
 export default Appointment;

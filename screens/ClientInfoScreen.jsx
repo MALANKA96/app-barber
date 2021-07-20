@@ -13,7 +13,9 @@ const ClientInfoScreen = ({ route }) => {
           }}
         ></Avatar>
         <NamePhoneView>
-          <NameClient>{route.params.client.fullName}</NameClient>
+          <NameClient style={{
+              color: "#f3f3f3",
+            }} >{route.params.client.fullName}</NameClient>
           <PhoneClient>{route.params.client.phone}</PhoneClient>
         </NamePhoneView>
       </ClientInfoView>
@@ -70,8 +72,9 @@ const ClientInfoScreen = ({ route }) => {
               paddingTop: 5,
             }}
           >
-            <AntDesign name="calendar" size={28} color="#484848" />
-            <DataService>{route.params.data}</DataService>
+            <AntDesign name="calendar" size={28} color="#f3f3f3" />
+            <DataService>{route.params.date.split(" ").slice(0, 3).reverse().join().replace(/,/g, ' ')} </DataService>
+            
           </View>
           <View
             style={{
@@ -80,7 +83,7 @@ const ClientInfoScreen = ({ route }) => {
               paddingTop: 5,
             }}
           >
-            <AntDesign name="clockcircleo" size={28} color="#484848" />
+            <AntDesign name="clockcircleo" size={28} color="#f3f3f3" />
             <TimeService>{route.params.time}</TimeService>
           </View>
           <View
@@ -90,7 +93,7 @@ const ClientInfoScreen = ({ route }) => {
               paddingTop: 5,
             }}
           >
-            <AntDesign name="downcircleo" size={28} color="#484848" />
+            <AntDesign name="downcircleo" size={28} color="#f3f3f3" />
             <TypeService>{route.params.typeService}</TypeService>
           </View>
           <View
@@ -101,15 +104,15 @@ const ClientInfoScreen = ({ route }) => {
               paddingBottom: 5,
             }}
           >
-            <AntDesign name="creditcard" size={28} color="#484848" />
-            <CostService>40 BYN</CostService>
+            <AntDesign name="creditcard" size={28} color="#f3f3f3" />
+            <CostService>{route.params.coast} BYN</CostService>
           </View>
         </NoteCardView>
       </NoteView>
 
       <HistoriButton
         style={{
-          shadowColor: "#2a86ff",
+          shadowColor: "#00796b",
           shadowOffset: {
             width: 0,
             height: 2,
@@ -121,9 +124,9 @@ const ClientInfoScreen = ({ route }) => {
       >
         <MaterialIcons name="history" size={34} color="white" />
       </HistoriButton>
-      <PlusButton
+      <EditButton
         style={{
-          shadowColor: "#2a86ff",
+          shadowColor: "#00796b",
           shadowOffset: {
             width: 0,
             height: 2,
@@ -134,19 +137,19 @@ const ClientInfoScreen = ({ route }) => {
         }}
       >
         <MaterialIcons name="edit" size={32} color="white" />
-      </PlusButton>
+      </EditButton>
     </ClientInfoItem>
   );
 };
 
-const PlusButton = styled.TouchableOpacity`
+const EditButton = styled.TouchableOpacity`
   position: absolute;
   align-items: center;
   justify-content: center;
   border-radius: 50px;
   width: 64px;
   height: 64px;
-  background-color: #2a86ff;
+  background-color: #00796b;
   right: 25px;
   bottom: 25px;
 `;
@@ -157,7 +160,7 @@ const HistoriButton = styled.TouchableOpacity`
   border-radius: 50px;
   width: 64px;
   height: 64px;
-  background-color: #2a86ff;
+  background-color: #00796b;
   left: 25px;
   bottom: 25px;
 `;
@@ -166,14 +169,14 @@ const CostService = styled.Text`
   width: 100%;
   font-size: 24px;
   font-weight: 400;
-  color: #000000;
+  color: #f3f3f3;
   padding-left: 15px;
 `;
 const TypeService = styled.Text`
   width: 100%;
   font-size: 24px;
   font-weight: 400;
-  color: #000000;
+  color: #f3f3f3;
   padding-left: 15px;
 `;
 const TimeService = styled.Text`
@@ -181,7 +184,7 @@ const TimeService = styled.Text`
   align-items: center;
   font-size: 24px;
   font-weight: 400;
-  color: #000000;
+  color: #f3f3f3;
   padding-left: 15px;
 `;
 
@@ -190,13 +193,13 @@ const DataService = styled.Text`
   align-items: center;
   font-size: 24px;
   font-weight: 400;
-  color: #000000;
+  color: #f3f3f3;
   padding-left: 15px;
 `;
 const NoteText = styled.Text`
   font-size: 24px;
   font-weight: 800;
-  color: #000000;
+  color: #f3f3f3;
   padding: 10px;
 `;
 
@@ -245,11 +248,12 @@ const Avatar = styled.Image`
 const NoteCardView = styled.View`
   width: 300px;
   border-radius: 10px;
-  background: #ffffff;
+  background: #333635;
 `;
 
 const NoteView = styled.View`
-  background: #f8fafd;
+  background: #0C0C0C;
+  color: #f3f3f3;
 `;
 
 const ButtonsView = styled.View`
@@ -271,7 +275,7 @@ const ClientInfoView = styled.View`
 const ClientInfoItem = styled.View`
   flex: 1;
   align-items: center;
-  background-color: #f8fafd;
+  background-color: #0C0C0C;
 `;
 
 export default ClientInfoScreen;
