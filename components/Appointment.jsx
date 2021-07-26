@@ -51,8 +51,8 @@ const NameClient = styled.Text`
 
 const Avatar = styled.Image`
   border-radius: 50px;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   margin-right: 15px;
 `;
 
