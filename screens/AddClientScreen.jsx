@@ -1,12 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
-import { Button, TextInput, View, Platform, Text} from "react-native";
+import { Button, TextInput, View, Platform, Text } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Formik } from "formik";
 import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
-import {Picker} from '@react-native-picker/picker';
-
+import { Picker } from "@react-native-picker/picker";
 
 const AddClientScreen = () => {
   const [date, setDate] = useState(new Date(Date.UTC(2021, 0, 0, 0, 0, 0)));
@@ -19,7 +18,7 @@ const AddClientScreen = () => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === "ios");
     setDate(currentDate);
-    console.log(date.toLocaleString('ru-RU', { timeZone: 'UTC' }))
+    console.log(date.toLocaleString("ru-RU", { timeZone: "UTC" }));
   };
 
   const showMode = (currentMode) => {
@@ -33,8 +32,7 @@ const AddClientScreen = () => {
 
   const showTimepicker = () => {
     showMode("time");
-  }; 
-  
+  };
 
   return (
     <Container>
@@ -56,23 +54,32 @@ const AddClientScreen = () => {
               placeholder="8 (029) 777-88-99"
               onChangeText={handleChange("phone")}
               onBlur={handleBlur("phone")}
-              keyboardType={'phone-pad'}
-               
+              keyboardType={"phone-pad"}
             />
             <View>
-            <Text>Дата</Text>
+              <Text>Дата</Text>
               <ViewDate>
-                
                 <TextInputDate
                   placeholder="Date YY-MM-DD"
                   onChangeText={handleChange("date")}
                   onBlur={handleBlur("date")}
-                  value={date.toLocaleString('ru-RU', { timeZone: 'UTC' }).split(" ").splice(0, 3, ).reverse().join(`, `)}
-                  disabled 
+                  editable={false}
+                  value={date
+                    .toLocaleString("ru-RU", { timeZone: "UTC" })
+                    .split(" ")
+                    .splice(0, 3)
+                    .reverse()
+                    .join(`, `)}
+                  disabled
                 />
-            <ViewDateCalendar>
-              <AntDesign name="calendar" size={34} color="#ffffff" onPress={showDatepicker} />
-            </ViewDateCalendar>
+                <ViewDateCalendar>
+                  <AntDesign
+                    name="calendar"
+                    size={34}
+                    color="#ffffff"
+                    onPress={showDatepicker}
+                  />
+                </ViewDateCalendar>
               </ViewDate>
               <Text>Время</Text>
               <ViewTime>
@@ -80,11 +87,19 @@ const AddClientScreen = () => {
                   placeholder="Time HH:MM"
                   onChangeText={handleChange("time")}
                   onBlur={handleChange("time")}
-                  value={date.toLocaleString('ru-RU', { timeZone: 'UTC' }).slice(11,16)}
+                  editable={false}
+                  value={date
+                    .toLocaleString("ru-RU", { timeZone: "UTC" })
+                    .slice(11, 16)}
                 />
-            <ViewTimeClock>
-              <AntDesign name="clockcircleo" size={34} color="#ffffff" onPress={showTimepicker} />
-            </ViewTimeClock>
+                <ViewTimeClock>
+                  <AntDesign
+                    name="clockcircleo"
+                    size={34}
+                    color="#ffffff"
+                    onPress={showTimepicker}
+                  />
+                </ViewTimeClock>
               </ViewTime>
               {show && (
                 <DateTimePicker
@@ -95,39 +110,49 @@ const AddClientScreen = () => {
                   display="default"
                   onChange={onChange}
                   locale="ru-RU"
-                
                 />
               )}
             </View>
             <Text>Услуга</Text>
-            <ViewService  handleChange={"services"} >
-              
+            <ViewService handleChange={"services"}>
               <Picker
-              
-              prompt="Pick one, just one"
-              style={{fontSize: 22}}
-  selectedValue={selectedLanguage}
-  onValueChange={(itemValue, itemIndex) =>
-    setSelectedLanguage(itemValue)
-  }
-  >
-  <Picker.Item label="Стрижка" value="1" style={{fontSize: 20, }} />
-  <Picker.Item label="Стрижка машинкой" value="2" style={{fontSize: 20}} />
-  <Picker.Item label="Оформление бороды" value="3" style={{fontSize: 20}} />
-  <Picker.Item label="Классическое влажное бритье" value="4" style={{fontSize: 20}} />
-</Picker> 
-</ViewService>
-            
+                prompt="Pick one, just one"
+                style={{ fontSize: 22 }}
+                selectedValue={selectedLanguage}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSelectedLanguage(itemValue)
+                }
+              >
+                <Picker.Item
+                  label="Стрижка"
+                  value="1"
+                  style={{ fontSize: 20 }}
+                />
+                <Picker.Item
+                  label="Стрижка машинкой"
+                  value="2"
+                  style={{ fontSize: 20 }}
+                />
+                <Picker.Item
+                  label="Оформление бороды"
+                  value="3"
+                  style={{ fontSize: 20 }}
+                />
+                <Picker.Item
+                  label="Классическое влажное бритье"
+                  value="4"
+                  style={{ fontSize: 20 }}
+                />
+              </Picker>
+            </ViewService>
 
-            <Button onPress={handleSubmit} title="ADD client"  />
+            <Button onPress={handleSubmit} title="ADD client" />
           </View>
         )}
       </Formik>
     </Container>
   );
 };
-
-
 
 const ViewService = styled.View`
   margin-top: 5px;
@@ -155,36 +180,35 @@ const TextInputTime = styled.TextInput`
 `;
 
 const ViewTimeClock = styled.TouchableOpacity`
-    margin-top: 5px;
-    margin-left: 5px;
-    justify-content: center;
-    align-items: center;
-    width: 15% ;
-    background-color: #00796b;
-    border-radius: 7px;
+  margin-top: 5px;
+  margin-left: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  background-color: #00796b;
+  border-radius: 7px;
 `;
 
 const ViewTime = styled.View`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
-
 const ViewDateCalendar = styled.TouchableOpacity`
-    margin-top: 5px;
-    margin-left: 5px;
-    justify-content: center;
-    align-items: center;
-    width: 15% ;
-    background-color: #00796b;
-    border-radius: 7px;
+  margin-top: 5px;
+  margin-left: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  background-color: #00796b;
+  border-radius: 7px;
 `;
 
 const ViewDate = styled.View`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const TextInputDate = styled.TextInput`
